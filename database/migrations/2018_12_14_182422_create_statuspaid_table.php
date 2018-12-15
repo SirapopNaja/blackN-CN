@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateBillTable extends Migration
+class CreateStatuspaidTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,11 @@ class CreateBillTable extends Migration
      */
     public function up()
     {
-        Schema::create('bill', function (Blueprint $table) {
+        Schema::create('statuspaid', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('bill');
-            $table->string('username');
+            $table->integer('name_id')->unsigned();
+            $table->foreign('name_id')->references('id')->on('user');
+            $table->boolean('paidmony');
             $table->timestamps();
         });
     }
@@ -28,6 +29,6 @@ class CreateBillTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('bill');
+        Schema::dropIfExists('statuspaid');
     }
 }

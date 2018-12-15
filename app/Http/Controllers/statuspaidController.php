@@ -3,17 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Model\user;
-class userController extends Controller
+use App\Model\statuspaid;
+class statuspaidController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        return user::get();
+        return statuspaid::get();
     }
 
     /**
@@ -34,13 +29,10 @@ class userController extends Controller
      */
     public function store(Request $request)
     {   
-        $form =$request->all();
-        $form ['password'] = base64_encode($form['password']);
-
-        $test = new user();
-        $test->fill($form) ;
-        $test->save();
         
+        $test = new statuspaid();
+        $test->fill($request->all());
+        $test->save();
         return 'save success';
         
     }
@@ -53,7 +45,7 @@ class userController extends Controller
      */
     public function show($id)
     {
-        return user::find($id);
+        return statuspaid::find($id);
     }
 
     /**
@@ -76,7 +68,7 @@ class userController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $test = user::find($id);
+        $test = statuspaid::find($id);
         $test->fill($request->all());
         $test->save();
         return 'update success';  
@@ -90,19 +82,9 @@ class userController extends Controller
      */
     public function destroy($id)
     {
-        $test = user::find($id); 
+        $test = statuspaid::find($id); 
         $test->delete = 3;
         $test->save();
         return 'Delete success';   
-    }
-    public function check($username)
-    {
-        $test = user :: where('username',$username)->first();
-        try {
-            $user = $test->username ;
-            return 0;
-        } catch (\Exception $th) {
-             return 1;
-        }
     }
 }

@@ -18,4 +18,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 
 
-Route::resource('/','userController');
+Route::resource('/user', userController::class);
+Route::resource('/statuspaid', statuspaidController::class);
+Route::resource('/statusgo',statusgoController::class); 
+Route::resource('/profile',profileController::class);
+
+
+Route::get('/table/{table}',table::class.'@gettable');
+Route::get('/check/{username}',userController::class.'@check');
