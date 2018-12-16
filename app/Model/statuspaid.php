@@ -9,8 +9,6 @@ class statuspaid extends Model
     protected $table = 'statuspaid';
     protected $fillable = [
         'name_id',
-        'name',
-        'surname',
         'paidmony'
     ];
 }

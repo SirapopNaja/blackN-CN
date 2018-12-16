@@ -97,12 +97,12 @@ class userController extends Controller
     }
     public function check($username)
     {
-        $test = user :: where('username',$username)->first();
+        $test = user :: where('username',$username)->where('password',$password)->first();
         try {
-            $user = $test->username ;
-            return 0;
+            return $test;
         } catch (\Exception $th) {
-             return 1;
+             return '';
         }
-    }
+        
+    }    
 }
