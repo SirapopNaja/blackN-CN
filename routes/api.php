@@ -22,7 +22,14 @@ Route::resource('/user', userController::class);
 Route::resource('/statuspaid', statuspaidController::class);
 Route::resource('/statusgo',statusgoController::class); 
 Route::resource('/profile',profileController::class);
+Route::resource('/profilereg',profileController::class);
+Route::resource('/userreg', userregController::class);
 
 
 Route::get('/table/{table}',table::class.'@gettable');
 Route::get('/check/{username}',userController::class.'@check');
+Route::get('/login',userController::class.'@login');
+Route::get('/checkreg/{username}',userregController::class.'@checkreg');
+Route::get('/loginreg',userregController::class.'@loginreg');
+
+

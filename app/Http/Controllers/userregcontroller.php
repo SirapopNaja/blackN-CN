@@ -3,17 +3,12 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Model\user;
-class userController extends Controller
-{
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+use App\Model\userreg;
+class userregcontroller extends Controller
+{  
     public function index()
     {
-        return user::get();
+        return userreg::get();
     }
 
     /**
@@ -35,9 +30,9 @@ class userController extends Controller
     public function store(Request $request)
     {   
         $form =$request->all();
-        $form ['password'] = base64_encode($form['password']);
+        $form ['passwordreg'] = base64_encode($form['passwordreg']);
 
-        $test = new user();
+        $test = new userreg();
         $test->fill($form) ;
         $test->save();
         
@@ -53,7 +48,7 @@ class userController extends Controller
      */
     public function show($id)
     {
-        return user::find($id);
+        return userreg::find($id);
     }
 
     /**
@@ -76,7 +71,7 @@ class userController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $test = user::find($id);
+        $test = userreg::find($id);
         $test->fill($request->all());
         $test->save();
         return 'update success';  
@@ -90,27 +85,27 @@ class userController extends Controller
      */
     public function destroy($id)
     {
-        $test = user::find($id); 
+        $test = userreg::find($id); 
         $test->delete = 3;
         $test->save();
         return 'Delete success';   
     }
-    public function check($username)
+    public function checkreg($usernamereg)
     {
-        $test = user :: where('username',$username)->first();
+        $test = userreg :: where('usernamereg',$usernamereg)->first();
         try {
-            $user =  $test->username;
+            $userreg =  $test->usernamereg;
             return 1;
         } catch (\Exception $th) {
              return 0;
         }
     }
-        public function login()
+        public function loginreg()
         {   
                        
-         $test1 = $_GET ['username'];
-         $test2 = $_GET ['password'];
-         $test = user :: where('username',$username)->where('password',$password)->first();      
+         $test1 = $_GET ['usernamereg'];
+         $test2 = base64_encode($_GET ['passwordreg']);
+         $test = userreg :: where('usernamereg',$usernamereg)->where('passwordreg',$passwordreg)->first();      
             try{
                 return $test;
             } catch(\Exception $th){

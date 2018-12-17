@@ -8,7 +8,11 @@ class profile extends Model
 {
     protected $table = 'profile';
     protected $fillable = [
+        'name',
+        'surname',
         'sex',
-        'Birthday'
+        'Birthday',
+        'phone_number',
+        'email'
     ];
 }
