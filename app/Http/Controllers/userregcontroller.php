@@ -102,7 +102,7 @@ class userregcontroller extends Controller
     }
         public function loginreg()
         {   
-                       
+        
          $test1 = $_GET ['usernamereg'];
          $test2 = base64_encode($_GET ['passwordreg']);
          $test = userreg :: where('usernamereg',$usernamereg)->where('passwordreg',$passwordreg)->first();      

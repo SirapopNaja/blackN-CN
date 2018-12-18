@@ -108,8 +108,8 @@ class userController extends Controller
         public function login()
         {   
                        
-         $test1 = $_GET ['username'];
-         $test2 = $_GET ['password'];
+         $username = $_GET ['username'];
+         $password = base64_encode($_GET ['password']);
          $test = user :: where('username',$username)->where('password',$password)->first();      
             try{
                 return $test;
